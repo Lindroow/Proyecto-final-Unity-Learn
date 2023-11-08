@@ -13,18 +13,19 @@ public class Player : MonoBehaviour
     
     [SerializeField] private Rigidbody rb;
     [SerializeField] private ParticleSystem _particulas;
+    [SerializeField] private UIManager UIManager;
 
-    public int jump
+    public int jump //ENCAPSULATION
     {
         protected set { _jump = value; }
         get { return _jump; }
     }
     public int speed
     {
-        protected set { _speed = value; }
+        protected set { _speed = value; }//ENCAPSULATION
         get { return _speed; }
 
-    }public ParticleSystem particulas
+    }public ParticleSystem particulas//ENCAPSULATION
     {
         protected set { _particulas = value; }
         get { return _particulas; }
@@ -59,9 +60,13 @@ public class Player : MonoBehaviour
     {
         if (transform.position.x >= 3.80f)
         {
+            UIManager.StartCoroutine("MostrarPanelReinicio");
             Destroy(transform.parent.gameObject);
             particulas.Play();
+            
         }
+        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,6 +74,8 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             GameManager.instance.SubirPuntos();
+            UIManager.SubirPuntosUI();
         }
     }
+
 }

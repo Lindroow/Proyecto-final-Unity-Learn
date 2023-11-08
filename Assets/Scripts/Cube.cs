@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : Player
+public class Cube : Player //INHERITANCE
 {
     private void Start()
     {
@@ -14,19 +14,19 @@ public class Cube : Player
 
     private void Update()
     {
-        Salto();
-        Movimiento();
+        Salto();        
+        Movimiento();       //ABSTRACTION
         Muerte();
     }
 
-    public override void Muerte()
+    public override void Muerte() //POLYMORPHISM
     {
         particulas.transform.position = gameObject.transform.position;
         base.Muerte();
 
     }
 
-    public override void Salto()
+    public override void Salto() //POLYMORPHISM
     {
         base.Salto();
         if(Input.GetKeyDown(KeyCode.Space))

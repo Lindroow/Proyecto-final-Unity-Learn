@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance { get; private set; }
     public int puntos;
-    [SerializeField] private TMP_Text lblPuntos;
+    public int BestScore;
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
+            return;
         }
+            instance = this;
+            DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -27,6 +32,12 @@ public class GameManager : MonoBehaviour
     public void SubirPuntos()
     {
         puntos++;
-        lblPuntos.text = puntos.ToString();
     }
+
+    
+
+    
+
+
+
 }
